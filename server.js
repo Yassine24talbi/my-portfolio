@@ -4,8 +4,7 @@ const app = express()
 const path = require('path');
 const bodyParser = require('body-parser');
 const message = require('./models/message')
-const url = require('./node_modules/gitignore/bin/gitignore')
-
+const url = require('./url.log')
 
 app.use(bodyParser.json());
 // Serve static files (HTML, CSS, JS) from the "public" directory
