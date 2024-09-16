@@ -8,6 +8,7 @@ let form = document.getElementById('form')
 let body = document.getElementById('body')
 let email = document.getElementById('email')
 let message = document.getElementById('message')
+let wait = document.getElementById('wait')
 
 
 function intro(){
@@ -66,17 +67,20 @@ function sendmessage(event){
                 message:message.value
             })
         }   
-        ).then(respons => respons.json())
-        .then(data => {console.log(data.message)
-            if(data.message === 'Message sent'){
+        ).then(async respons => {
+            wait.style.display = 'block';
+            await respons.json()
+            if(Number(respons.status) === 200){
                 email.value = ''
                 message.value = ''
                 email.style.borderColor = 'black'
                 message.style.borderColor = 'black'
                 location.href = '#'
+                wait.style.display = 'none';
             }else{
                 email.style.borderColor = 'red'
                 message.style.borderColor = 'red'
+                wait.style.display = 'none';
             }
         })
     }
